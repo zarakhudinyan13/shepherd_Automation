@@ -1,0 +1,17 @@
+{
+  "name": "shepherd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^24.10.2",
+    "allure-playwright": "^3.4.3",
+    "axios": "^1.13.2"
+  }
+}
