@@ -2,7 +2,18 @@
   "name": "shepherd",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+
+   "test": "npx playwright test",                    
+   "test:ui": "npx playwright test ./tests/ui",       
+   "test:api": "npx playwright test ./tests/api",    
+   "test:headed": "HEADLESS=false npx playwright test",        
+   "test:login": "npx playwright test ./tests/ui/authentication.spec.ts",
+   "test:rooms": "npx playwright test ./tests/ui/roomCRUD.spec.ts",
+   "test:booking": "npx playwright test ./tests/ui/reservation.spec.ts",
+   "test:report": "npx playwright show-report" 
+  },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -12,9 +23,7 @@
     "@playwright/test": "^1.57.0",
     "@types/node": "^24.10.2",
     "allure-playwright": "^3.4.3",
-    "axios": "^1.13.2"
-  },
-  "dependencies": {
+    "axios": "^1.13.2",
     "dotenv": "^17.2.3"
   }
 }
