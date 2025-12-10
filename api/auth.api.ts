@@ -1,13 +1,13 @@
 import axios from 'axios';
-import { BASE_URL, ADMIN_CREDENTIALS } from '../utils/env';
+import { ENV } from '../utils/env';
 
 export class AuthAPI {
   static async login() {
     const response = await axios.post(
-      `${BASE_URL}/api/auth/login`,
+      `${ENV.BASE_URL}/api/auth/login`,
       {
-        username: ADMIN_CREDENTIALS.username,
-        password: ADMIN_CREDENTIALS.password,
+        username: ENV.ADMIN_USERNAME,
+        password: ENV.ADMIN_PASSWORD,
       },
       {
         headers: { 'Content-Type': 'application/json' },
@@ -15,17 +15,18 @@ export class AuthAPI {
       }
     );
 
-    // Some responses return `token`, some return `cookie`, so handle both:
+    // 1) If API returns token JSON (some environments do)
     if (response.data?.token) {
-      return response.data.token;
+      return `token=${response.data.token}`;
     }
 
-    // Fallback for cookie-based auth
+    // 2) Otherwise, extract cookie from response headers
     const cookieHeader = response.headers['set-cookie'];
     if (cookieHeader && cookieHeader.length > 0) {
-      return cookieHeader[0];
+      // We only need the session value, not other metadata
+      return cookieHeader[0].split(';')[0];
     }
 
-    throw new Error('Token or session cookie not received from login response');
+    throw new Error('❌ Auth login failed: No token or cookie received');
   }
 }

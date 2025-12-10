@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: './tests',
   use: {
     baseURL: 'https://automationintesting.online',
-    headless: true,
+    headless: false,
     screenshot: 'only-on-failure',
     video: 'on',
   },

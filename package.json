@@ -13,5 +13,8 @@
     "@types/node": "^24.10.2",
     "allure-playwright": "^3.4.3",
     "axios": "^1.13.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
   }
 }

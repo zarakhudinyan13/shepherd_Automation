@@ -1,14 +1,14 @@
 import { test } from '@playwright/test';
 import { AdminLoginPage } from '../../pages/adminLogin.page';
 import { RoomsPage } from '../../pages/rooms.page';
-import { ADMIN_CREDENTIALS } from '../../utils/env';
+import { ENV } from '../../utils/env';
 
 test('Admin can create and delete a room', async ({ page }) => {
   const login = new AdminLoginPage(page);
   const rooms = new RoomsPage(page);
 
   // Login first
-  await login.login(ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password);
+  await login.login(ENV.ADMIN_USERNAME, ENV.ADMIN_PASSWORD);
 
   // Navigate to Rooms
   await rooms.navigate();

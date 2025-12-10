@@ -1,6 +1,8 @@
-export const BASE_URL = 'https://automationintesting.online';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-export const ADMIN_CREDENTIALS = {
-  username: 'admin',
-  password: 'password',
+export const ENV = {
+  ADMIN_USERNAME: process.env.ADMIN_USERNAME ?? '',
+  ADMIN_PASSWORD: process.env.ADMIN_PASSWORD ?? '',
+  BASE_URL: process.env.BASE_URL ?? 'https://automationintesting.online',
 };
