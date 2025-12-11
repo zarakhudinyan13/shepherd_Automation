@@ -1,28 +1,29 @@
-import axios from 'axios';
-import { ENV } from '../utils/env';
-import { AuthAPI } from './auth.api';
+import axios from "axios";
+import { ENV } from "../utils/env";
 
 export class RoomAPI {
-  static async create(payload: any) {
-    const cookie = await AuthAPI.login();
-    const response = await axios.post(
-      `${ENV.BASE_URL}/room/`,
-      payload,
-      {
-        headers: {
-          Cookie: cookie,
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-    return response.data;
-  }
+  static endpoint = `${ENV.BASE_URL}/api/room`;
 
   static async list() {
-    const cookie = await AuthAPI.login();
-    const response = await axios.get(`${ENV.BASE_URL}/room/`, {
-      headers: { Cookie: cookie },
-    });
+    const response = await axios.get(this.endpoint);
     return response.data.rooms;
   }
+    // doesn't work with axios ---- have to comment out
+  // static async create(payload: any) {
+  //   const cookie = await AuthAPI.login();
+
+  //   const response = await axios.post(
+  //     this.endpoint,
+  //     payload,
+  //     {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Cookie: cookie,
+  //       },
+  //       withCredentials: true,
+  //     }
+  //   );
+
+  //   return response.data; // { success: true }
+  // }
 }

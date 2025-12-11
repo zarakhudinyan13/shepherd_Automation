@@ -1,14 +1,17 @@
-import axios from 'axios';
-import { ENV } from '../utils/env';
+import axios from "axios";
+import { ENV } from "../utils/env";
 
 export class BookingAPI {
-  static async createBooking(payload: any) {
-    const response = await axios.post(
-      `${ENV.BASE_URL}/booking/`,
-      payload,
-      { headers: { 'Content-Type': 'application/json' } }
-    );
+  static endpoint = `${ENV.BASE_URL}/api/booking`;
 
-    return response.data;
+  // Raw version for negative tests
+  static async createRaw(payload: any) {
+    try {
+      return await axios.post(this.endpoint, payload, {
+        validateStatus: () => true, // allow axios to return error responses
+      });
+    } catch (err) {
+      throw err;
+    }
   }
 }
